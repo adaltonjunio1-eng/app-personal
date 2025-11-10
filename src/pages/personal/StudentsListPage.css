@@ -138,6 +138,18 @@
   .student-item__actions {
     grid-template-columns: 1fr; /* empilha no mobile */
   }
+
+  /* Deixar os botões mais compactos e priorizar ícone no mobile */
+  .student-item__actions .btn {
+    padding: 10px 10px;
+  }
+  .student-item__actions .btn .btn__icon svg {
+    width: 18px;
+    height: 18px;
+  }
+  .student-item__actions .btn span:last-child {
+    font-size: 0.9rem; /* texto menor */
+  }
 }
 
 /* Quebra para 2 colunas em telas médias, garantindo que não estoure */
