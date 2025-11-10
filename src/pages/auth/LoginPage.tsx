@@ -30,19 +30,27 @@ export function LoginPage() {
         email = `${username}@app.com`;
         loginPassword = `${username}${lastFourDigits}`;
       } else {
-        // Personal: usa telefone como identificador + senha própria
-        const phoneDigits = nameOrPhone.replace(/\D/g, '');
+        // Personal: usa nome ou telefone como identificador + senha própria
+        const input = nameOrPhone.toLowerCase().trim();
         
-        // Verificar no localStorage se existe usuário cadastrado
-        const registeredUsers = JSON.parse(localStorage.getItem('registered_users') || '[]');
-        const user = registeredUsers.find((u: any) => u.phone.replace(/\D/g, '') === phoneDigits);
-        
-        if (user) {
-          email = user.email;
+        // Se digitou "matheus franco" ou "mateus franco", usar email específico
+        if (input === 'matheus franco' || input === 'mateus franco') {
+          email = 'matheusfranco@app.com';
           loginPassword = password;
         } else {
-          // Se não achar no localStorage, usar o sistema antigo
-          email = nameOrPhone.includes('@') ? nameOrPhone : `${nameOrPhone.toLowerCase().replace(/\s+/g, '')}@app.com`;
+          const phoneDigits = nameOrPhone.replace(/\D/g, '');
+          
+          // Verificar no localStorage se existe usuário cadastrado
+          const registeredUsers = JSON.parse(localStorage.getItem('registered_users') || '[]');
+          const user = registeredUsers.find((u: any) => u.phone.replace(/\D/g, '') === phoneDigits);
+          
+          if (user) {
+            email = user.email;
+            loginPassword = password;
+          } else {
+            // Se não achar no localStorage, usar o sistema antigo
+            email = nameOrPhone.includes('@') ? nameOrPhone : `${nameOrPhone.toLowerCase().replace(/\s+/g, '')}@app.com`;
+          }
         }
       }
       
@@ -133,11 +141,11 @@ export function LoginPage() {
             <>
               <div className="form-group">
                 <input
-                  type="tel"
+                  type="text"
                   value={nameOrPhone}
                   onChange={(e) => setNameOrPhone(e.target.value)}
                   required
-                  placeholder="Telefone: (11) 98765-4321"
+                  placeholder="Login (Nome ou Telefone)"
                 />
               </div>
 
