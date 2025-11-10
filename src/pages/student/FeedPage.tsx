@@ -143,7 +143,7 @@ export function FeedPage() {
                   </span>
                 </div>
                 <div className="feed-comments">
-                  {post.comments.map(c => (
+                  {post.comments.map((c: any) => (
                     <div key={c.id} className="feed-comment">
                       <strong>{c.user}:</strong> {c.text}
                     </div>
