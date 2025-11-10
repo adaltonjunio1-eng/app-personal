@@ -2,10 +2,10 @@
   {
     "id": "personal-1",
     "type": "personal",
-    "name": "Mariana Gomes",
-    "email": "mariana@fitpro.com",
+    "name": "Mateus Franco",
+    "email": "mateus@fitpro.com",
     "password": "123456",
-    "photo": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80",
+    "photo": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=200&q=80",
     "createdAt": "2024-01-10"
   },
   {
