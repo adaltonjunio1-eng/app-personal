@@ -1,0 +1,24 @@
+{
+  "name": "Matheus Franco - Personal Trainer",
+  "short_name": "Matheus Franco",
+  "description": "Plataforma de gestão de treinos e alunos",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#05070a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
