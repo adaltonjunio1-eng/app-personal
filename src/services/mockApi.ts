@@ -30,17 +30,36 @@ async function fetchJson<T>(resource: string): Promise<T> {
 const DATA_BASE = '/data';
 
 export async function login(credentials: AuthCredentials): Promise<LoginResponse> {
-  const users = await fetchJson<User[]>(`${DATA_BASE}/users.json`);
-  const user = users.find(
+  const baseUsers = await fetchJson<User[]>(`${DATA_BASE}/users.json`);
+
+  // Carregar usuários adicionais do localStorage (personal registrados e alunos criados dinamicamente)
+  let extraUsers: User[] = [];
+  try {
+    const registered = JSON.parse(localStorage.getItem('registered_users') || '[]');
+    const students = JSON.parse(localStorage.getItem('student_users') || '[]');
+    // Normalizar para o tipo User
+    const mapUser = (u: any): User => ({
+      id: u.id || `${u.type}-${Date.now()}`,
+      type: u.type,
+      name: u.name,
+      email: u.email,
+      password: u.password,
+      photo: u.photo || 'https://i.pravatar.cc/150?u=' + (u.id || u.email),
+      createdAt: u.createdAt || new Date().toISOString(),
+    });
+    extraUsers = [...registered.map(mapUser), ...students.map(mapUser)];
+  } catch (e) {
+    console.warn('Falha ao carregar usuários extras do localStorage', e);
+  }
+
+  const allUsers = [...baseUsers, ...extraUsers];
+  const user = allUsers.find(
     (item) => item.email === credentials.email && item.password === credentials.password,
   );
   if (!user) {
     throw new Error('Credenciais inválidas');
   }
-  return {
-    user,
-    token: `mock-token-${user.id}`,
-  };
+  return { user, token: `mock-token-${user.id}` };
 }
 
 export async function register(user: Omit<User, 'id' | 'createdAt'>): Promise<User> {

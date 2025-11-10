@@ -353,6 +353,20 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
         goal: student.goal,
         upcomingWorkouts: [],
         status: 'ativo',
+      // Salvar credenciais do aluno no localStorage para permitir login
+      const studentUsers = JSON.parse(localStorage.getItem('student_users') || '[]');
+      const newStudentUser = {
+        id: studentId,
+        type: 'aluno',
+        name: student.name,
+        email: `${login}@app.com`,
+        password: tempPassword,
+        phone: student.phone,
+        createdAt: new Date().toISOString(),
+      };
+      studentUsers.push(newStudentUser);
+      localStorage.setItem('student_users', JSON.stringify(studentUsers));
+
       };
 
       // Criar notificação para o personal com as credenciais
