@@ -9,6 +9,7 @@ export function LoginPage() {
   const [userType, setUserType] = useState<'aluno' | 'personal' | null>(null);
   const [nameOrPhone, setNameOrPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [phoneInput, setPhoneInput] = useState('');
   const [error, setError] = useState('');
 
   async function handleSubmit(event: React.FormEvent) {
@@ -19,9 +20,9 @@ export function LoginPage() {
       let loginPassword = password;
 
       if (userType === 'aluno') {
-        // Aluno: usa nome + telefone para gerar senha automaticamente
-        const name = nameOrPhone.split('|')[0] || '';
-        const phone = nameOrPhone.split('|')[1] || '';
+        // Aluno: usa apenas o nome, senha é gerada automaticamente com telefone cadastrado
+        const name = nameOrPhone.trim();
+        const phone = phoneInput.trim();
         
         const username = name.toLowerCase().replace(/\s+/g, '');
         const phoneDigits = phone.replace(/\D/g, '');
@@ -130,11 +131,17 @@ export function LoginPage() {
                   value={nameOrPhone}
                   onChange={(e) => setNameOrPhone(e.target.value)}
                   required
-                  placeholder="Nome|Telefone (ex: João Silva|(11)98765-4321)"
+                  placeholder="Nome completo"
                 />
-                <small style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem', marginTop: '4px', display: 'block' }}>
-                  Digite seu nome e telefone separados por | (barra vertical)
-                </small>
+              </div>
+              <div className="form-group">
+                <input
+                  type="tel"
+                  value={phoneInput}
+                  onChange={(e) => setPhoneInput(e.target.value)}
+                  required
+                  placeholder="Telefone: (11) 98765-4321"
+                />
               </div>
             </>
           ) : (
