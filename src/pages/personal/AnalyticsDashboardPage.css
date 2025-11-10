@@ -1,0 +1,352 @@
+.analytics-dashboard {
+  padding: 0;
+  margin: 0;
+  background: #1a1d29;
+  min-height: 100vh;
+  color: #fff;
+  padding-bottom: 100px;
+}
+
+/* Header com valor total - estilo FUTURINVEST */
+.analytics-total-value {
+  background: linear-gradient(135deg, #2d3561 0%, #1f2237 100%);
+  padding: 32px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.total-value-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.nav-arrow {
+  background: transparent;
+  border: none;
+  color: #f093fb;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: all 0.3s;
+}
+
+.nav-arrow:hover {
+  color: #fff;
+  transform: scale(1.2);
+}
+
+.total-value-content {
+  text-align: center;
+}
+
+.total-value-label {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: #a0aec0;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.total-value-number {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -2px;
+}
+
+.total-value-trend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.trend-icon {
+  color: #48bb78;
+  font-size: 1.2rem;
+}
+
+.trend-text {
+  color: #48bb78;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.total-value-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #a0aec0;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.stat-value.positive {
+  color: #48bb78;
+}
+
+/* Gráfico principal com grid */
+.main-chart {
+  padding: 32px 24px;
+}
+
+.chart-svg {
+  width: 100%;
+  height: 250px;
+  margin-bottom: 16px;
+}
+
+.chart-x-axis {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8px;
+}
+
+.x-label {
+  font-size: 0.8rem;
+  color: #a0aec0;
+}
+
+/* Cards inferiores em 3 colunas */
+.bottom-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 0 24px 24px 24px;
+}
+
+.info-card {
+  padding: 24px;
+}
+
+.info-card h3 {
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  color: #a0aec0;
+  margin: 0 0 16px 0;
+}
+
+.card-subtitle {
+  font-size: 1rem;
+  color: #fff;
+  margin: 0 0 16px 0;
+}
+
+.mini-chart {
+  height: 80px;
+}
+
+.mini-chart svg {
+  width: 100%;
+  height: 100%;
+}
+
+.donut-mini {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 16px;
+  position: relative;
+}
+
+.donut-mini svg {
+  width: 100%;
+  height: 100%;
+}
+
+.donut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.donut-center span {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.legend-mini {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #a0aec0;
+}
+
+.legend-mini .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.stat-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stat-box {
+  background: rgba(240, 147, 251, 0.1);
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(240, 147, 251, 0.3);
+}
+
+.stat-box-label {
+  display: block;
+  font-size: 0.7rem;
+  color: #a0aec0;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.stat-box-value {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #f093fb;
+  font-family: monospace;
+}
+
+/* Top alunos */
+.top-students {
+  padding: 32px 24px;
+  margin: 0 24px;
+}
+
+.top-students h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 24px 0;
+  color: #fff;
+}
+
+.students-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.student-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s;
+}
+
+.student-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(240, 147, 251, 0.3);
+  transform: translateX(4px);
+}
+
+.student-rank {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.student-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.student-info strong {
+  font-size: 1rem;
+  color: #fff;
+}
+
+.student-info span {
+  font-size: 0.85rem;
+  color: #a0aec0;
+}
+
+.student-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+.progress-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  min-width: 45px;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .total-value-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bottom-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .total-value-number {
+    font-size: 2.5rem;
+  }
+}

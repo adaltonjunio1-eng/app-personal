@@ -1,0 +1,108 @@
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard__header {
+  margin-bottom: 32px;
+}
+
+.dashboard__header h1 {
+  font-size: clamp(1.8rem, 1.4rem + 1vw, 2.4rem);
+  margin-bottom: 8px;
+  letter-spacing: 0.04em;
+}
+
+.dashboard__header p {
+  color: var(--text-muted);
+}
+
+.dashboard__metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.metric {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.metric svg {
+  color: var(--primary);
+}
+
+.metric__value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.metric__label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.dashboard__workouts {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+  margin-bottom: 48px;
+}
+
+.workout-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.workout-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.workout-card p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.dashboard__agenda {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.agenda-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.agenda-card__info {
+  flex: 1;
+}
+
+.agenda-card__info strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.agenda-card__info p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .dashboard__metrics {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,177 @@
+.progress-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.progress-section {
+  margin-bottom: 48px;
+}
+
+.progress-section__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.icon-wrapper {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  border-radius: var(--radius-md);
+  color: var(--bg-primary);
+}
+
+.progress-section h3 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.progress-section p {
+  color: var(--text-muted);
+  margin: 4px 0 0 0;
+}
+
+.weight-diff {
+  margin-left: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.weight-diff.positive {
+  color: var(--secondary);
+}
+
+.weight-diff.negative {
+  color: var(--primary);
+}
+
+.weight-chart {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px 24px 24px;
+  min-height: 300px;
+}
+
+.chart-grid {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 250px;
+  gap: 16px;
+}
+
+.chart-bar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  height: 100%;
+}
+
+.bar-fill {
+  width: 100%;
+  max-width: 60px;
+  background: linear-gradient(180deg, var(--primary) 0%, rgba(0, 255, 94, 0.3) 100%);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  transition: height 0.3s ease;
+  position: relative;
+}
+
+.bar-label {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.bar-value {
+  position: absolute;
+  top: -24px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.measurements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.measurement-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.measurement-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.measurement-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.photo-item {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-date {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  background: linear-gradient(180deg, transparent 0%, rgba(5, 7, 10, 0.9) 100%);
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .chart-grid {
+    gap: 8px;
+  }
+
+  .bar-fill {
+    max-width: 40px;
+  }
+
+  .measurements-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .photos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

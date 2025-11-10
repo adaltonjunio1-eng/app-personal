@@ -1,0 +1,133 @@
+.students-list {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.students-list__filters {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.search-box svg {
+  color: var(--text-muted);
+}
+
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  outline: none;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.filter-group svg {
+  color: var(--text-muted);
+}
+
+.filter-group select {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.students-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+.student-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.student-item__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border);
+}
+
+.student-item__info {
+  flex: 1;
+}
+
+.student-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.student-item__header strong {
+  font-size: 1.05rem;
+}
+
+.student-item__goal {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.student-item__stats {
+  display: flex;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+}
+
+.student-item__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.student-item__actions button {
+  flex: 1;
+}
+
+@media (max-width: 640px) {
+  .students-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .student-item__actions {
+    flex-direction: column;
+  }
+  
+  .student-item__actions button {
+    width: 100%;
+  }
+}

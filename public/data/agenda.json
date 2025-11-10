@@ -1,0 +1,26 @@
+[
+  {
+    "id": "event-1",
+    "id_user": "student-1",
+    "type": "treino",
+    "title": "Treino A - Peito e Tríceps",
+    "date": "2025-11-06T19:00:00",
+    "location": "Academia FitPrime - Sala 2"
+  },
+  {
+    "id": "event-2",
+    "id_user": "student-1",
+    "type": "consulta",
+    "title": "Consulta nutricional",
+    "date": "2025-11-09T10:30:00",
+    "location": "Online"
+  },
+  {
+    "id": "event-3",
+    "id_user": "student-2",
+    "type": "avaliacao",
+    "title": "Avaliação física trimestral",
+    "date": "2025-11-07T10:00:00",
+    "location": "Academia FitPrime - Sala de Avaliações"
+  }
+]

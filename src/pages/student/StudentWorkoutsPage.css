@@ -1,0 +1,193 @@
+.student-workouts {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 100px;
+}
+
+.student-workouts__header {
+  margin-bottom: 32px;
+}
+
+.student-workouts__header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.student-workouts__header p {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.workout-days {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.workout-day {
+  background: var(--card-background);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.workout-day:hover {
+  box-shadow: 0 4px 12px rgba(0, 180, 216, 0.15);
+}
+
+.workout-day__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--card-background);
+}
+
+.workout-day__header:hover {
+  background: rgba(0, 180, 216, 0.05);
+}
+
+.workout-day__header.active {
+  background: rgba(0, 180, 216, 0.08);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.workout-day__info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.day-badge {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  min-width: 50px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 180, 216, 0.3);
+}
+
+.workout-day__info h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: var(--text-primary);
+}
+
+.workout-day__info p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.chevron {
+  transition: transform 0.3s ease;
+  color: var(--text-muted);
+}
+
+.chevron.rotated {
+  transform: rotate(90deg);
+}
+
+.workout-day__content {
+  padding: 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.workout-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+.workout-item__info h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  color: var(--text-primary);
+}
+
+.workout-item__info p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.workout-item__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Mobile responsivo */
+@media (max-width: 640px) {
+  .student-workouts {
+    padding: 16px;
+  }
+
+  .student-workouts__header h1 {
+    font-size: 1.5rem;
+  }
+
+  .student-workouts__header p {
+    font-size: 0.9rem;
+  }
+
+  .workout-day__header {
+    padding: 16px;
+  }
+
+  .workout-day__info {
+    gap: 12px;
+  }
+
+  .day-badge {
+    padding: 10px 12px;
+    font-size: 0.75rem;
+    min-width: 45px;
+  }
+
+  .workout-day__info h3 {
+    font-size: 1rem;
+  }
+
+  .workout-day__info p {
+    font-size: 0.85rem;
+  }
+
+  .workout-item {
+    padding: 12px;
+  }
+
+  .workout-item__info h4 {
+    font-size: 0.95rem;
+  }
+}

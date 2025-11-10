@@ -1,0 +1,44 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(560px, calc(100% - 32px));
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 14px clamp(12px, 2vw, 20px);
+  border-radius: 32px;
+  background: rgba(9, 13, 19, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(16px);
+  gap: 6px;
+}
+
+.bottom-nav a {
+  text-decoration: none;
+}
+
+@media (max-width: 540px) {
+  .bottom-nav {
+    bottom: 12px;
+    width: calc(100% - 20px);
+    padding: 12px 8px;
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bottom-nav {
+    bottom: env(safe-area-inset-bottom, 12px);
+    width: calc(100% - 16px);
+    padding: 10px 6px;
+    gap: 4px;
+  }
+}
+
+@media (max-height: 700px) {
+  .bottom-nav {
+    bottom: 8px;
+  }
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "msg-1",
+    "from": "personal-1",
+    "to": "student-1",
+    "message": "Bom dia, Lucas! Ajustei o treino de hoje com foco em mobilidade.",
+    "date": "2025-11-05T08:10:00"
+  },
+  {
+    "id": "msg-2",
+    "from": "student-1",
+    "to": "personal-1",
+    "message": "Perfeito! Vou treinar às 19h.",
+    "date": "2025-11-05T08:16:00"
+  },
+  {
+    "id": "msg-3",
+    "from": "personal-1",
+    "to": "student-2",
+    "message": "Lembrete: amanhã temos avaliação física às 10h.",
+    "date": "2025-11-04T12:00:00"
+  }
+]

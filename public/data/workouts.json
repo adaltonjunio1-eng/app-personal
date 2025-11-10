@@ -1,0 +1,56 @@
+[
+  {
+    "id": "workout-1",
+    "id_aluno": "student-1",
+    "name": "Treino A - Peito e Tríceps",
+    "weekDays": ["seg", "qua"],
+    "status": "pendente",
+    "notes": "Foco em amplitude completa e cadência controlada",
+    "videoBrief": "https://videos.trainingapp.com/peito-triceps-demo"
+  },
+  {
+    "id": "workout-2",
+    "id_aluno": "student-1",
+    "name": "Treino B - Costas e Bíceps",
+    "weekDays": ["ter", "qui"],
+    "status": "concluído",
+    "notes": "Registrar carga do levantamento terra",
+    "videoBrief": "https://videos.trainingapp.com/costas-biceps-intenso"
+  },
+  {
+    "id": "workout-3",
+    "id_aluno": "student-1",
+    "name": "Treino C - Pernas",
+    "weekDays": ["sex"],
+    "status": "pendente",
+    "notes": "Agachamento livre com barra - foco na postura",
+    "videoBrief": "https://videos.trainingapp.com/pernas"
+  },
+  {
+    "id": "workout-4",
+    "id_aluno": "student-1",
+    "name": "Cardio + Abdômen",
+    "weekDays": ["sab"],
+    "status": "pendente",
+    "notes": "30min cardio moderado + prancha",
+    "videoBrief": "https://videos.trainingapp.com/cardio"
+  },
+  {
+    "id": "workout-5",
+    "id_aluno": "student-1",
+    "name": "Treino D - Ombros",
+    "weekDays": ["dom"],
+    "status": "pendente",
+    "notes": "Desenvolvimento militar + elevações laterais",
+    "videoBrief": "https://videos.trainingapp.com/ombros"
+  },
+  {
+    "id": "workout-6",
+    "id_aluno": "student-2",
+    "name": "HIIT + Core",
+    "weekDays": ["seg", "qua", "sex"],
+    "status": "pendente",
+    "notes": "Monitorar FC máxima",
+    "videoBrief": "https://videos.trainingapp.com/hiit-core"
+  }
+]

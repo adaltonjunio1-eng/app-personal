@@ -1,0 +1,34 @@
+[
+  {
+    "id_usuario": "student-1",
+    "title": "Plano alimentar - Hipertrofia",
+    "sections": [
+      {
+        "meal": "Pré-treino",
+        "items": ["1 banana", "30g de pasta de amendoim", "200ml de água"]
+      },
+      {
+        "meal": "Pós-treino",
+        "items": ["1 scoop de whey", "1 maçã", "100g de aveia"]
+      },
+      {
+        "meal": "Jantar",
+        "items": ["150g de salmão", "200g de batata doce", "Mix de salada"]
+      }
+    ]
+  },
+  {
+    "id_usuario": "student-2",
+    "title": "Plano alimentar - Cutting",
+    "sections": [
+      {
+        "meal": "Café da manhã",
+        "items": ["Omelete com 3 claras + 1 gema", "2 fatias de pão integral", "Chá verde"]
+      },
+      {
+        "meal": "Almoço",
+        "items": ["120g de frango grelhado", "Arroz integral", "Brócolis no vapor"]
+      }
+    ]
+  }
+]

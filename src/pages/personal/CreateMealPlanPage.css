@@ -1,0 +1,263 @@
+.create-meal-plan {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.meal-plan-form h3 {
+  font-size: 1.3rem;
+  margin-bottom: 24px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.form-row--inline {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.form-group textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.meals-section {
+  margin-top: 40px;
+}
+
+.meals-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.meals-header h3 {
+  font-size: 1.3rem;
+}
+
+.meals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.meal-section__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.meal-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  border-radius: var(--radius-md);
+  color: var(--bg-primary);
+  flex-shrink: 0;
+}
+
+.meal-section__title {
+  flex: 1;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.meal-title-input {
+  flex: 1;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 8px 12px !important;
+}
+
+.meal-time-input {
+  width: 120px;
+  padding: 8px 12px !important;
+  font-weight: 600;
+}
+
+.remove-meal-btn {
+  background: transparent;
+  border: 1px solid var(--secondary);
+  color: var(--secondary);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.remove-meal-btn:hover {
+  background: var(--secondary);
+  color: var(--bg-primary);
+}
+
+.meal-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.meal-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.meal-item__number {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: var(--bg-primary);
+  border-radius: 50%;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.meal-item__fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.meal-item__fields .form-group {
+  margin-bottom: 0;
+}
+
+.meal-item__fields input {
+  padding: 10px 14px;
+}
+
+.remove-item-btn {
+  background: transparent;
+  border: 1px solid var(--secondary);
+  color: var(--secondary);
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.remove-item-btn:hover {
+  background: var(--secondary);
+  color: var(--bg-primary);
+}
+
+.save-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .meals-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .meals-header button {
+    width: 100%;
+  }
+
+  .meal-section__header {
+    flex-wrap: wrap;
+  }
+
+  .meal-section__title {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .meal-time-input {
+    width: 100%;
+  }
+
+  .meal-item {
+    flex-direction: column;
+  }
+
+  .remove-item-btn {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .save-actions {
+    flex-direction: column;
+  }
+
+  .save-actions button {
+    width: 100%;
+  }
+
+  .meal-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .meal-title-input {
+    font-size: 1.1rem;
+  }
+}

@@ -1,0 +1,132 @@
+.meal-plans-page {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.meal-plans-page__filters {
+  margin-bottom: 32px;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.search-box svg {
+  color: var(--text-muted);
+}
+
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  outline: none;
+}
+
+.meal-plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 20px;
+}
+
+.meal-plan-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.meal-plan-item__icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  border-radius: var(--radius-md);
+  color: var(--bg-primary);
+  flex-shrink: 0;
+}
+
+.meal-plan-item__content {
+  flex: 1;
+}
+
+.meal-plan-item__student {
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.meal-plan-item__goal {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.meal-plan-item__meta {
+  display: flex;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  align-items: center;
+}
+
+.meal-plan-item__meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  color: var(--text-muted);
+  text-align: center;
+  gap: 20px;
+}
+
+.empty-state svg {
+  opacity: 0.3;
+}
+
+.empty-state p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .meal-plans-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .meal-plan-item {
+    gap: 16px;
+  }
+
+  .meal-plan-item__icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .meal-plan-item__icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .meal-plan-item__meta {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}

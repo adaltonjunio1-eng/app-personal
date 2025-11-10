@@ -1,0 +1,68 @@
+.week-days-badge {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.day-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.day-badge.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--bg-primary);
+  box-shadow: 0 2px 8px rgba(0, 255, 94, 0.3);
+}
+
+/* Tamanhos */
+.week-days-badge--small .day-badge {
+  width: 20px;
+  height: 20px;
+  font-size: 0.65rem;
+}
+
+.week-days-badge--medium .day-badge {
+  width: 28px;
+  height: 28px;
+  font-size: 0.75rem;
+}
+
+.week-days-badge--large .day-badge {
+  width: 36px;
+  height: 36px;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .week-days-badge {
+    gap: 3px;
+  }
+
+  .week-days-badge--small .day-badge {
+    width: 18px;
+    height: 18px;
+    font-size: 0.6rem;
+  }
+
+  .week-days-badge--medium .day-badge {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+  }
+
+  .week-days-badge--large .day-badge {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+}

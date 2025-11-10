@@ -1,0 +1,72 @@
+/* Utilidades Mobile */
+
+/* Prevent text selection on touch */
+@media (hover: none) and (pointer: coarse) {
+  button,
+  .card--interactive,
+  .btn {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+}
+
+/* Scroll suave */
+* {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Evitar zoom em inputs no iOS */
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="number"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* Safe area para notch */
+@supports (padding: env(safe-area-inset-top)) {
+  .layout__topbar {
+    padding-top: calc(14px + env(safe-area-inset-top));
+  }
+  
+  .bottom-nav {
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  }
+}
+
+/* Landscape mobile */
+@media (max-width: 896px) and (max-height: 414px) and (orientation: landscape) {
+  .layout__content {
+    padding-top: 16px;
+    padding-bottom: 72px;
+  }
+  
+  .bottom-nav {
+    bottom: 8px;
+    padding: 8px;
+  }
+  
+  .layout__navlink span {
+    display: none;
+  }
+}
+
+/* Animações reduzidas para acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

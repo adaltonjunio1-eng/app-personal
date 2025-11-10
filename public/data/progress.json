@@ -1,0 +1,40 @@
+[
+  {
+    "id_usuario": "student-1",
+    "weight": [
+      { "date": "2025-09-01", "value": 82.5 },
+      { "date": "2025-10-01", "value": 81.0 },
+      { "date": "2025-11-01", "value": 79.8 }
+    ],
+    "measurements": [
+      { "label": "Peitoral", "value": 102 },
+      { "label": "Cintura", "value": 82 },
+      { "label": "Braço", "value": 38 }
+    ],
+    "photos": [
+      {
+        "url": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80",
+        "date": "2025-11-01"
+      }
+    ]
+  },
+  {
+    "id_usuario": "student-2",
+    "weight": [
+      { "date": "2025-09-01", "value": 68.0 },
+      { "date": "2025-10-01", "value": 66.7 },
+      { "date": "2025-11-01", "value": 65.9 }
+    ],
+    "measurements": [
+      { "label": "Quadril", "value": 96 },
+      { "label": "Abdômen", "value": 78 },
+      { "label": "Coxa", "value": 58 }
+    ],
+    "photos": [
+      {
+        "url": "https://images.unsplash.com/photo-1548695607-9c73430ba869?auto=format&fit=crop&w=600&q=80",
+        "date": "2025-10-18"
+      }
+    ]
+  }
+]

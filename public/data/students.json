@@ -1,0 +1,36 @@
+[
+  {
+    "id_user": "student-1",
+    "id_personal": "personal-1",
+    "goal": "Hipertrofia e condicionamento",
+    "upcomingWorkouts": [
+      {
+        "id": "workout-1",
+        "name": "Treino A - Peito e Tríceps",
+        "date": "2025-11-06",
+        "status": "pendente"
+      },
+      {
+        "id": "workout-2",
+        "name": "Treino B - Costas e Bíceps",
+        "date": "2025-11-08",
+        "status": "pendente"
+      }
+    ],
+    "status": "ativo"
+  },
+  {
+    "id_user": "student-2",
+    "id_personal": "personal-1",
+    "goal": "Perda de gordura e fortalecimento do core",
+    "upcomingWorkouts": [
+      {
+        "id": "workout-3",
+        "name": "HIIT + Core",
+        "date": "2025-11-06",
+        "status": "pendente"
+      }
+    ],
+    "status": "ativo"
+  }
+]

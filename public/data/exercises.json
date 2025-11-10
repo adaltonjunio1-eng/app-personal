@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ex-1",
+    "id_treino": "workout-1",
+    "name": "Supino reto",
+    "video_url": "https://www.youtube.com/embed/rT7DgCr-3pg",
+    "repeticoes": "4 x 8",
+    "series": 4,
+    "carga": "80kg",
+    "descanso_segundos": 90
+  },
+  {
+    "id": "ex-2",
+    "id_treino": "workout-1",
+    "name": "Crucifixo inclinado",
+    "video_url": "https://www.youtube.com/embed/1bU1v1ufapY",
+    "repeticoes": "3 x 12",
+    "series": 3,
+    "carga": "24kg",
+    "descanso_segundos": 60
+  },
+  {
+    "id": "ex-3",
+    "id_treino": "workout-1",
+    "name": "Tríceps corda",
+    "video_url": "https://www.youtube.com/embed/738xiuSwFno",
+    "repeticoes": "3 x 15",
+    "series": 3,
+    "carga": "18kg",
+    "descanso_segundos": 45
+  },
+  {
+    "id": "ex-4",
+    "id_treino": "workout-2",
+    "name": "Barra fixa",
+    "video_url": "https://www.youtube.com/embed/eGo4IYlbE5g",
+    "repeticoes": "4 x 6",
+    "series": 4,
+    "carga": "Peso corporal",
+    "descanso_segundos": 120
+  },
+  {
+    "id": "ex-5",
+    "id_treino": "workout-2",
+    "name": "Remada curvada",
+    "video_url": "https://www.youtube.com/embed/6TSP1TRMUzs",
+    "repeticoes": "4 x 10",
+    "series": 4,
+    "carga": "70kg",
+    "descanso_segundos": 90
+  },
+  {
+    "id": "ex-6",
+    "id_treino": "workout-3",
+    "name": "Circuito HIIT",
+    "video_url": "https://www.youtube.com/embed/ml6cT4AZdqI",
+    "repeticoes": "5 rounds",
+    "series": 5,
+    "carga": "Peso corporal",
+    "descanso_segundos": 30
+  }
+]
