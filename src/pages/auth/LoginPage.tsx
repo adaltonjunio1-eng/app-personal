@@ -7,24 +7,46 @@ export function LoginPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [userType, setUserType] = useState<'aluno' | 'personal' | null>(null);
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [nameOrPhone, setNameOrPhone] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setError('');
     try {
-      // Gerar login e senha baseado no nome e telefone
-      const username = name.toLowerCase().replace(/\s+/g, '');
-      const phoneDigits = phone.replace(/\D/g, '');
-      const lastFourDigits = phoneDigits.slice(-4);
-      const generatedPassword = `${username}${lastFourDigits}`;
+      let email = '';
+      let loginPassword = password;
+
+      if (userType === 'aluno') {
+        // Aluno: usa nome + telefone para gerar senha automaticamente
+        const name = nameOrPhone.split('|')[0] || '';
+        const phone = nameOrPhone.split('|')[1] || '';
+        
+        const username = name.toLowerCase().replace(/\s+/g, '');
+        const phoneDigits = phone.replace(/\D/g, '');
+        const lastFourDigits = phoneDigits.slice(-4);
+        
+        email = `${username}@app.com`;
+        loginPassword = `${username}${lastFourDigits}`;
+      } else {
+        // Personal: usa telefone como identificador + senha própria
+        const phoneDigits = nameOrPhone.replace(/\D/g, '');
+        
+        // Verificar no localStorage se existe usuário cadastrado
+        const registeredUsers = JSON.parse(localStorage.getItem('registered_users') || '[]');
+        const user = registeredUsers.find((u: any) => u.phone.replace(/\D/g, '') === phoneDigits);
+        
+        if (user) {
+          email = user.email;
+          loginPassword = password;
+        } else {
+          // Se não achar no localStorage, usar o sistema antigo
+          email = nameOrPhone.includes('@') ? nameOrPhone : `${nameOrPhone.toLowerCase().replace(/\s+/g, '')}@app.com`;
+        }
+      }
       
-      // Usar email fictício para compatibilidade com sistema atual
-      const email = `${username}@app.com`;
-      
-      await login({ email, password: generatedPassword });
+      await login({ email, password: loginPassword });
       navigate('/');
     } catch (err) {
       setError((err as Error).message);
@@ -59,6 +81,13 @@ export function LoginPage() {
               PERSONAL TRAINER
             </button>
           </div>
+
+          <button 
+            className="register-link"
+            onClick={() => navigate('/cadastro')}
+          >
+            Personal? Cadastre-se aqui
+          </button>
         </div>
       </div>
     );
@@ -85,25 +114,44 @@ export function LoginPage() {
         </h2>
 
         <form className="login-form" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-              placeholder="Nome completo"
-            />
-          </div>
+          {userType === 'aluno' ? (
+            <>
+              <div className="form-group">
+                <input
+                  type="text"
+                  value={nameOrPhone}
+                  onChange={(e) => setNameOrPhone(e.target.value)}
+                  required
+                  placeholder="Nome|Telefone (ex: João Silva|(11)98765-4321)"
+                />
+                <small style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem', marginTop: '4px', display: 'block' }}>
+                  Digite seu nome e telefone separados por | (barra vertical)
+                </small>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="form-group">
+                <input
+                  type="tel"
+                  value={nameOrPhone}
+                  onChange={(e) => setNameOrPhone(e.target.value)}
+                  required
+                  placeholder="Telefone: (11) 98765-4321"
+                />
+              </div>
 
-          <div className="form-group">
-            <input
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              required
-              placeholder="Telefone: (11) 98765-4321"
-            />
-          </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  placeholder="Sua senha"
+                />
+              </div>
+            </>
+          )}
 
           {error && <div className="form-error">{error}</div>}
 

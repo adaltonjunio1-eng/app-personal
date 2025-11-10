@@ -1,33 +1,77 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
 import './LoginPage.css';
 
 export function RegisterPage() {
   const navigate = useNavigate();
-  const { register, login } = useAuth();
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [userType, setUserType] = useState<'personal' | 'aluno'>('personal');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setError('');
+
+    if (!name || !phone || !password || !confirmPassword) {
+      setError('Preencha todos os campos');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError('As senhas não coincidem');
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('A senha deve ter no mínimo 6 caracteres');
+      return;
+    }
+
+    const phoneDigits = phone.replace(/\D/g, '');
+    if (phoneDigits.length < 10) {
+      setError('Digite um número de telefone válido');
+      return;
+    }
+
     try {
-      const newUser = await register({
+      const username = name.toLowerCase().replace(/\s+/g, '');
+      const email = `${username}@app.com`;
+
+      const newUser = {
+        id: `personal-${Date.now()}`,
+        type: 'personal',
         name,
         email,
+        phone,
         password,
-        type: userType,
-        photo: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80',
-      });
-      // Auto login after registration
-      await login({ email: newUser.email, password });
-      navigate('/');
+        photo: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=200&q=80',
+        createdAt: new Date().toISOString()
+      };
+
+      const existingUsers = JSON.parse(localStorage.getItem('registered_users') || '[]');
+      
+      const userExists = existingUsers.find((u: any) => 
+        u.phone === phone || u.email === email
+      );
+
+      if (userExists) {
+        setError('Já existe uma conta com este telefone');
+        return;
+      }
+
+      existingUsers.push(newUser);
+      localStorage.setItem('registered_users', JSON.stringify(existingUsers));
+
+      setSuccess(true);
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
+
     } catch (err) {
-      setError((err as Error).message);
+      setError('Erro ao criar conta. Tente novamente.');
     }
   }
 
@@ -44,70 +88,65 @@ export function RegisterPage() {
         </button>
 
         <div className="login-logo">
-          <div className="logo-icon">4</div>
-          <div className="logo-text">personal</div>
+          <img src="/images/logo.png" alt="Logo" className="logo-image" />
         </div>
 
-        <h2 className="login-title">Criar Conta</h2>
+        <h2 className="login-title">Cadastro Personal Trainer</h2>
 
-        <form className="login-form" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <select 
-              value={userType} 
-              onChange={(e) => setUserType(e.target.value as 'personal' | 'aluno')}
-              style={{
-                width: '100%',
-                padding: '18px 24px',
-                fontSize: '1rem',
-                background: 'rgba(255, 255, 255, 0.05)',
-                border: '2px solid rgba(255, 255, 255, 0.1)',
-                borderRadius: '8px',
-                color: 'white',
-                cursor: 'pointer'
-              }}
-            >
-              <option value="personal" style={{ background: '#1a1d29' }}>Personal Trainer</option>
-              <option value="aluno" style={{ background: '#1a1d29' }}>Aluno</option>
-            </select>
+        {success ? (
+          <div className="form-success">
+            <p>✅ Conta criada com sucesso!</p>
+            <p>Redirecionando para login...</p>
           </div>
+        ) : (
+          <form className="login-form" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                placeholder="Nome completo"
+              />
+            </div>
 
-          <div className="form-group">
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-              placeholder="Nome completo"
-            />
-          </div>
+            <div className="form-group">
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
+                placeholder="Telefone: (11) 98765-4321"
+              />
+            </div>
 
-          <div className="form-group">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              placeholder="Email"
-            />
-          </div>
+            <div className="form-group">
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="Senha (mínimo 6 caracteres)"
+              />
+            </div>
 
-          <div className="form-group">
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              placeholder="Senha (mínimo 6 caracteres)"
-              minLength={6}
-            />
-          </div>
+            <div className="form-group">
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                placeholder="Confirme sua senha"
+              />
+            </div>
 
-          {error && <div className="form-error">{error}</div>}
+            {error && <div className="form-error">{error}</div>}
 
-          <button type="submit" className="login-submit">
-            CADASTRAR
-          </button>
-        </form>
+            <button type="submit" className="login-submit">
+              CRIAR CONTA
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );
