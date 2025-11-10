@@ -12,23 +12,7 @@ export function MealPlansPage() {
   const { students } = useAppData();
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Mock data - em produção viria do contexto
-  const mealPlans = [
-    {
-      id: 'plan-1',
-      studentId: 'student-1',
-      date: '2025-11-06',
-      dailyCalories: 2000,
-      mealsCount: 6,
-    },
-    {
-      id: 'plan-2',
-      studentId: 'student-2',
-      date: '2025-11-07',
-      dailyCalories: 1800,
-      mealsCount: 5,
-    },
-  ];
+  const mealPlans: any[] = [];
 
   const filteredPlans = mealPlans.filter((plan) => {
     const student = students.find((s) => s.id_user === plan.studentId);

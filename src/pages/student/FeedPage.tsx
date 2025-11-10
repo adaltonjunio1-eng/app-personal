@@ -5,37 +5,10 @@ import { Heart, MessageCircle, Camera, Bell } from 'lucide-react';
 import { useAppData } from '../../hooks/useAppData';
 import './FeedPage.css';
 
-// Mock de posts
-const initialPosts = [
-  {
-    id: 'post-1',
-    user: { name: 'Lucas', photo: '/avatars/lucas.png' },
-    image: '/feed/lucas-pose.jpg',
-    caption: 'Finalizei o treino de pernas! 🦵🔥',
-    likes: 5,
-    liked: false,
-    comments: [
-      { id: 'c1', user: 'Mariana', text: 'Mandou bem!' },
-      { id: 'c2', user: 'João', text: 'Top demais!' }
-    ]
-  },
-  {
-    id: 'post-2',
-    user: { name: 'Mariana', photo: '/avatars/mariana.png' },
-    image: '/feed/mariana-pose.jpg',
-    caption: 'Treino de costas concluído! 💪',
-    likes: 8,
-    liked: true,
-    comments: [
-      { id: 'c3', user: 'Lucas', text: 'Arrasou!' }
-    ]
-  }
-];
-
 export function FeedPage() {
   const { user } = useAuth();
   const { notifications, addFeedNotification } = useAppData();
-  const [posts, setPosts] = useState(initialPosts);
+  const [posts, setPosts] = useState<any[]>([]);
   const [newCaption, setNewCaption] = useState('');
   const [newImage, setNewImage] = useState<string | null>(null);
 

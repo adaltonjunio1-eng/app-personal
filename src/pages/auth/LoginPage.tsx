@@ -24,14 +24,6 @@ export function LoginPage() {
 
   const handleUserTypeSelect = (type: 'aluno' | 'personal') => {
     setUserType(type);
-    // Pre-fill credentials for testing
-    if (type === 'aluno') {
-      setEmail('lucas@alunos.com');
-      setPassword('123456');
-    } else {
-      setEmail('mariana@fitpro.com');
-      setPassword('123456');
-    }
   };
 
   if (!userType) {

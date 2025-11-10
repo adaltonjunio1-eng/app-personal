@@ -32,54 +32,7 @@ export function FinancialPage() {
     month: ''
   });
   
-  // Mock de pagamentos - usa os IDs reais dos students
-  const [payments, setPayments] = useState<Payment[]>(() => {
-    if (students.length === 0) return [];
-    
-    const firstStudentId = students[0]?.id_user || 'student-1';
-    const secondStudentId = students[1]?.id_user || 'student-2';
-    
-    return [
-      {
-        id: 'pay-1',
-        studentId: firstStudentId,
-        studentName: getStudentName(firstStudentId),
-        amount: 350,
-        dueDate: '2025-11-10',
-        paidDate: '2025-11-08',
-        status: 'pago',
-        month: 'Novembro 2025'
-      },
-      {
-        id: 'pay-2',
-        studentId: secondStudentId,
-        studentName: getStudentName(secondStudentId),
-        amount: 400,
-        dueDate: '2025-11-15',
-        status: 'pendente',
-        month: 'Novembro 2025'
-      },
-      {
-        id: 'pay-3',
-        studentId: firstStudentId,
-        studentName: getStudentName(firstStudentId),
-        amount: 350,
-        dueDate: '2025-10-10',
-        paidDate: '2025-10-09',
-        status: 'pago',
-        month: 'Outubro 2025'
-      },
-      {
-        id: 'pay-4',
-        studentId: secondStudentId,
-        studentName: getStudentName(secondStudentId),
-        amount: 400,
-        dueDate: '2025-10-05',
-        status: 'atrasado',
-        month: 'Outubro 2025'
-      },
-    ];
-  });
+  const [payments, setPayments] = useState<Payment[]>([]);
 
   const filteredPayments = payments.filter(p => 
     filter === 'todos' ? true : p.status === filter
