@@ -3,8 +3,9 @@
     "id": "personal-1",
     "type": "personal",
     "name": "Mateus Franco",
-    "email": "mateus@fitpro.com",
-    "password": "123456",
+    "email": "mateusfranco@app.com",
+    "password": "mateusfranco0000",
+    "phone": "(11) 99999-0000",
     "photo": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=200&q=80",
     "createdAt": "2024-01-10"
   },
@@ -12,8 +13,9 @@
     "id": "student-1",
     "type": "aluno",
     "name": "Lucas Andrade",
-    "email": "lucas@alunos.com",
-    "password": "123456",
+    "email": "lucasandrade@app.com",
+    "password": "lucasandrade1234",
+    "phone": "(11) 98765-1234",
     "photo": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=200&q=80",
     "createdAt": "2024-02-18"
   },
@@ -21,8 +23,9 @@
     "id": "student-2",
     "type": "aluno",
     "name": "Ana Beatriz",
-    "email": "ana@alunos.com",
-    "password": "123456",
+    "email": "anabeatriz@app.com",
+    "password": "anabeatriz5678",
+    "phone": "(11) 97654-5678",
     "photo": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80",
     "createdAt": "2024-03-02"
   }

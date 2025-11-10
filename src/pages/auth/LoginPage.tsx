@@ -7,15 +7,24 @@ export function LoginPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [userType, setUserType] = useState<'aluno' | 'personal' | null>(null);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setError('');
     try {
-      await login({ email, password });
+      // Gerar login e senha baseado no nome e telefone
+      const username = name.toLowerCase().replace(/\s+/g, '');
+      const phoneDigits = phone.replace(/\D/g, '');
+      const lastFourDigits = phoneDigits.slice(-4);
+      const generatedPassword = `${username}${lastFourDigits}`;
+      
+      // Usar email fictício para compatibilidade com sistema atual
+      const email = `${username}@app.com`;
+      
+      await login({ email, password: generatedPassword });
       navigate('/');
     } catch (err) {
       setError((err as Error).message);
@@ -78,21 +87,21 @@ export function LoginPage() {
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
-              placeholder="Email"
+              placeholder="Nome completo"
             />
           </div>
 
           <div className="form-group">
             <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               required
-              placeholder="Senha"
+              placeholder="Telefone: (11) 98765-4321"
             />
           </div>
 
