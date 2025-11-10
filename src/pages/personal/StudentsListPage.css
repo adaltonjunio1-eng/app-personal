@@ -78,6 +78,7 @@
 
 .student-item__info {
   flex: 1;
+  min-width: 0; /* evita overflow quando usado dentro de flex */
 }
 
 .student-item__header {
@@ -112,10 +113,18 @@
   display: flex;
   gap: 8px;
   margin-top: 4px;
+  flex-wrap: wrap; /* permite quebrar linha se faltar espaço */
 }
 
 .student-item__actions button {
-  flex: 1;
+  flex: 1 1 120px; /* base mínima para cada botão e permite encolher */
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Garantir que o componente Button não imponha largura mínima aqui */
+.student-item__actions .btn {
+  min-width: 0;
 }
 
 @media (max-width: 640px) {
