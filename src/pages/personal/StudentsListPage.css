@@ -58,7 +58,7 @@
 
 .students-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
 }
 
@@ -80,6 +80,7 @@
 .student-item__info {
   flex: 1;
   min-width: 0; /* evita overflow quando usado dentro de flex */
+  overflow-wrap: anywhere; /* evita que textos longos empurrem o layout */
 }
 
 .student-item__header {
