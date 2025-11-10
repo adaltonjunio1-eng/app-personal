@@ -66,6 +66,7 @@
   display: flex;
   gap: 16px;
   align-items: flex-start;
+  overflow: hidden; /* evita qualquer conteúdo estourar o card */
 }
 
 .student-item__avatar {
@@ -110,21 +111,23 @@
 }
 
 .student-item__actions {
-  display: flex;
+  /* Grid garante que os 3 botões caibam sempre dentro do card */
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
   margin-top: 4px;
-  flex-wrap: wrap; /* permite quebrar linha se faltar espaço */
+  width: 100%;
 }
 
 .student-item__actions button {
-  flex: 1 1 120px; /* base mínima para cada botão e permite encolher */
   min-width: 0;
-  max-width: 100%;
+  width: 100%;
 }
 
 /* Garantir que o componente Button não imponha largura mínima aqui */
 .student-item__actions .btn {
   min-width: 0;
+  padding: 10px 12px; /* mais compacto para caber melhor */
 }
 
 @media (max-width: 640px) {
@@ -133,11 +136,14 @@
   }
   
   .student-item__actions {
-    flex-direction: column;
+    grid-template-columns: 1fr; /* empilha no mobile */
   }
-  
-  .student-item__actions button {
-    width: 100%;
+}
+
+/* Quebra para 2 colunas em telas médias, garantindo que não estoure */
+@media (max-width: 980px) and (min-width: 641px) {
+  .student-item__actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
