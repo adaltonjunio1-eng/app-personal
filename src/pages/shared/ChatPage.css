@@ -96,7 +96,7 @@
 .chat-input {
   display: flex;
   gap: 12px;
-  padding: 20px;
+  padding: 20px 12px;
   border-top: 1px solid var(--border);
   background: var(--bg-primary);
 }
@@ -114,6 +114,11 @@
 
 .chat-input input:focus {
   border-color: var(--primary);
+}
+
+.chat-input button {
+  flex-shrink: 0;
+  min-width: auto;
 }
 
 /* Scrollbar customizada */
@@ -142,5 +147,14 @@
 
   .chat-container {
     height: calc(100vh - 280px);
+  }
+
+  .chat-input {
+    padding: 12px 6px;
+    gap: 6px;
+  }
+
+  .chat-input input {
+    padding: 12px 14px;
   }
 }

@@ -90,10 +90,11 @@
 }
 .feed-post-image {
   width: 100%;
-  max-height: 320px;
-  object-fit: cover;
+  max-height: 500px;
+  object-fit: contain;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0,180,216,0.10);
+  background: rgba(0, 0, 0, 0.02);
 }
 .feed-post-caption {
   font-size: 1.05rem;
@@ -171,7 +172,7 @@
     padding: 8px 2px 60px 2px;
   }
   .feed-post-image {
-    max-height: 180px;
+    max-height: 400px;
   }
   .feed-new-post {
     flex-direction: column;

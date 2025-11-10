@@ -7,7 +7,6 @@ import { RegisterPage } from './pages/auth/RegisterPage';
 import { RecoverPasswordPage } from './pages/auth/RecoverPasswordPage';
 import { OnboardingPage } from './pages/auth/OnboardingPage';
 import { PersonalDashboard } from './pages/personal/PersonalDashboard';
-import { AnalyticsDashboardPage } from './pages/personal/AnalyticsDashboardPage';
 import { FinancialPage } from './pages/personal/FinancialPage';
 import { StudentDashboard } from './pages/student/StudentDashboard';
 import { StudentWorkoutsPage } from './pages/student/StudentWorkoutsPage';
@@ -24,7 +23,7 @@ import { ProfilePage } from './pages/shared/ProfilePage';
 import { NotificationsPage } from './pages/shared/NotificationsPage';
 import { MainLayout } from './components/layout/MainLayout';
 import { TopBar } from './components/layout/TopBar';
-import { Home, Dumbbell, TrendingUp, MessageCircle, LogOut, Users, Heart, Bell, BarChart3, Wallet } from 'lucide-react';
+import { Home, Dumbbell, TrendingUp, MessageCircle, LogOut, Users, Heart, Bell, Wallet } from 'lucide-react';
 import { FeedPage } from './pages/student/FeedPage';
 
 function App() {
@@ -39,7 +38,6 @@ function App() {
 
   const personalNav = [
     { label: 'Início', icon: <Home />, to: '/' },
-    { label: 'Analytics', icon: <BarChart3 />, to: '/analytics' },
     { label: 'Alunos', icon: <Users />, to: '/alunos' },
     { label: 'Treinos', icon: <Dumbbell />, to: '/treinos' },
     { label: 'Financeiro', icon: <Wallet />, to: '/financeiro' },
@@ -52,7 +50,6 @@ function App() {
     { label: 'Feed', icon: <Heart />, to: '/feed' },
     { label: 'Progresso', icon: <TrendingUp />, to: '/progresso' },
     { label: 'Chat', icon: <MessageCircle />, to: '/chat' },
-    { label: 'Notificações', icon: <Bell />, to: '/notificacoes' },
   ];
 
   const navItems = user?.type === 'personal' ? personalNav : studentNav;
@@ -135,7 +132,6 @@ function App() {
             user?.type === 'personal' ? <PersonalDashboard /> : <StudentDashboard />
           }
         />
-        <Route path="/analytics" element={<AnalyticsDashboardPage />} />
         <Route path="/financeiro" element={<FinancialPage />} />
         <Route path="/alunos" element={<StudentsListPage />} />
         <Route path="/treinos" element={user?.type === 'personal' ? <WorkoutsPage /> : <StudentWorkoutsPage />} />

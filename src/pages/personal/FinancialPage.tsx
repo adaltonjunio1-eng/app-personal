@@ -16,6 +16,11 @@ interface Payment {
   month: string;
 }
 
+// Helper para obter nome do aluno pelo id
+const getStudentName = (studentId: string) => {
+  return `Aluno #${studentId.slice(-6)}`;
+};
+
 export function FinancialPage() {
   const { students } = useAppData();
   const [filter, setFilter] = useState<'todos' | 'pago' | 'pendente' | 'atrasado'>('todos');
@@ -27,47 +32,54 @@ export function FinancialPage() {
     month: ''
   });
   
-  // Mock de pagamentos
-  const [payments, setPayments] = useState<Payment[]>([
-    {
-      id: 'pay-1',
-      studentId: 'student-1',
-      studentName: 'Lucas Andrade',
-      amount: 350,
-      dueDate: '2025-11-10',
-      paidDate: '2025-11-08',
-      status: 'pago',
-      month: 'Novembro 2025'
-    },
-    {
-      id: 'pay-2',
-      studentId: 'student-2',
-      studentName: 'Ana Beatriz',
-      amount: 400,
-      dueDate: '2025-11-15',
-      status: 'pendente',
-      month: 'Novembro 2025'
-    },
-    {
-      id: 'pay-3',
-      studentId: 'student-1',
-      studentName: 'Lucas Andrade',
-      amount: 350,
-      dueDate: '2025-10-10',
-      paidDate: '2025-10-09',
-      status: 'pago',
-      month: 'Outubro 2025'
-    },
-    {
-      id: 'pay-4',
-      studentId: 'student-2',
-      studentName: 'Ana Beatriz',
-      amount: 400,
-      dueDate: '2025-10-05',
-      status: 'atrasado',
-      month: 'Outubro 2025'
-    },
-  ]);
+  // Mock de pagamentos - usa os IDs reais dos students
+  const [payments, setPayments] = useState<Payment[]>(() => {
+    if (students.length === 0) return [];
+    
+    const firstStudentId = students[0]?.id_user || 'student-1';
+    const secondStudentId = students[1]?.id_user || 'student-2';
+    
+    return [
+      {
+        id: 'pay-1',
+        studentId: firstStudentId,
+        studentName: getStudentName(firstStudentId),
+        amount: 350,
+        dueDate: '2025-11-10',
+        paidDate: '2025-11-08',
+        status: 'pago',
+        month: 'Novembro 2025'
+      },
+      {
+        id: 'pay-2',
+        studentId: secondStudentId,
+        studentName: getStudentName(secondStudentId),
+        amount: 400,
+        dueDate: '2025-11-15',
+        status: 'pendente',
+        month: 'Novembro 2025'
+      },
+      {
+        id: 'pay-3',
+        studentId: firstStudentId,
+        studentName: getStudentName(firstStudentId),
+        amount: 350,
+        dueDate: '2025-10-10',
+        paidDate: '2025-10-09',
+        status: 'pago',
+        month: 'Outubro 2025'
+      },
+      {
+        id: 'pay-4',
+        studentId: secondStudentId,
+        studentName: getStudentName(secondStudentId),
+        amount: 400,
+        dueDate: '2025-10-05',
+        status: 'atrasado',
+        month: 'Outubro 2025'
+      },
+    ];
+  });
 
   const filteredPayments = payments.filter(p => 
     filter === 'todos' ? true : p.status === filter
@@ -109,13 +121,10 @@ export function FinancialPage() {
       return;
     }
 
-    const student = students.find(s => s.id === newPayment.studentId);
-    if (!student) return;
-
     const payment: Payment = {
       id: `pay-${Date.now()}`,
       studentId: newPayment.studentId,
-      studentName: student.name,
+      studentName: getStudentName(newPayment.studentId),
       amount: parseFloat(newPayment.amount),
       dueDate: newPayment.dueDate,
       status: 'pendente',
@@ -159,7 +168,7 @@ export function FinancialPage() {
 
       {/* Cards de resumo */}
       <div className="financial-summary">
-        <Card accent="success">
+        <Card accent="primary">
           <div className="summary-card">
             <div className="summary-icon success">
               <DollarSign size={28} />
@@ -175,7 +184,7 @@ export function FinancialPage() {
           </div>
         </Card>
 
-        <Card accent="warning">
+        <Card accent="secondary">
           <div className="summary-card">
             <div className="summary-icon warning">
               <Clock size={28} />
@@ -190,7 +199,7 @@ export function FinancialPage() {
           </div>
         </Card>
 
-        <Card accent="danger">
+        <Card accent="secondary">
           <div className="summary-card">
             <div className="summary-icon danger">
               <AlertCircle size={28} />
@@ -334,8 +343,8 @@ export function FinancialPage() {
               >
                 <option value="">Selecione um aluno</option>
                 {students.map(student => (
-                  <option key={student.id} value={student.id}>
-                    {student.name}
+                  <option key={student.id_user} value={student.id_user}>
+                    {getStudentName(student.id_user)}
                   </option>
                 ))}
               </select>

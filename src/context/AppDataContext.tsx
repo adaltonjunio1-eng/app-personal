@@ -61,6 +61,7 @@ interface AppDataContextValue extends AppDataState {
   addFeedNotification: (userId: string, type: 'feed-like' | 'feed-comment', postId: string, fromUser: string) => void;
   setExercises: (exercises: Record<string, Exercise[]>) => void;
   addNotification: (notification: Omit<NotificationItem, 'id' | 'date' | 'read'>) => void;
+  addStudent: (student: { name: string; phone: string; goal: string }) => void;
 }
 
 export const AppDataContext = createContext<AppDataContextValue | undefined>(undefined);
@@ -105,13 +106,47 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
           getChatMessages(user.id),
         ]);
 
+        // Verificar se precisa criar lembrete de peso para alunos
+        const updatedNotifications = [...notifications];
+        students.forEach((student) => {
+          const studentProgress = progressMap[student.id_user];
+          if (studentProgress && studentProgress.weight.length > 0) {
+            const lastWeight = studentProgress.weight[studentProgress.weight.length - 1];
+            const lastWeightDate = new Date(lastWeight.date);
+            const today = new Date();
+            const daysSinceLastWeight = Math.floor((today.getTime() - lastWeightDate.getTime()) / (1000 * 60 * 60 * 24));
+            
+            // Se passou 30 dias ou mais, criar lembrete
+            if (daysSinceLastWeight >= 30) {
+              const hasReminder = notifications.some(n => 
+                n.id_user === student.id_user && 
+                n.type === 'alerta' && 
+                n.title.includes('Registrar seu Peso') &&
+                !n.read
+              );
+              
+              if (!hasReminder) {
+                updatedNotifications.push({
+                  id: `weight-reminder-${student.id_user}-${Date.now()}`,
+                  id_user: student.id_user,
+                  type: 'alerta',
+                  title: '📊 Hora de Registrar seu Peso!',
+                  message: `Já faz ${daysSinceLastWeight} dias desde seu último registro. Atualize seu progresso para acompanhar sua evolução!`,
+                  date: new Date().toISOString(),
+                  read: false,
+                });
+              }
+            }
+          }
+        });
+
         setState({
           students,
           workouts: workoutMap,
           exercises: exercisesMap,
           progress: progressMap,
           agenda: [],
-          notifications,
+          notifications: updatedNotifications,
           mealPlan: undefined,
           chat,
         });
@@ -134,13 +169,43 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
           }),
         );
 
+        // Verificar se precisa criar lembrete de peso
+        const updatedNotifications = [...notifications];
+        if (progressEntry && progressEntry.weight.length > 0) {
+          const lastWeight = progressEntry.weight[progressEntry.weight.length - 1];
+          const lastWeightDate = new Date(lastWeight.date);
+          const today = new Date();
+          const daysSinceLastWeight = Math.floor((today.getTime() - lastWeightDate.getTime()) / (1000 * 60 * 60 * 24));
+          
+          // Se passou 30 dias ou mais, criar lembrete
+          if (daysSinceLastWeight >= 30) {
+            const hasReminder = notifications.some(n => 
+              n.type === 'alerta' && 
+              n.title.includes('Registrar seu Peso') &&
+              !n.read
+            );
+            
+            if (!hasReminder) {
+              updatedNotifications.push({
+                id: `weight-reminder-${user.id}-${Date.now()}`,
+                id_user: user.id,
+                type: 'alerta',
+                title: '📊 Hora de Registrar seu Peso!',
+                message: `Já faz ${daysSinceLastWeight} dias desde seu último registro. Atualize seu progresso para acompanhar sua evolução!`,
+                date: new Date().toISOString(),
+                read: false,
+              });
+            }
+          }
+        }
+
         setState({
           students: profile ? [profile] : [],
           workouts: { [user.id]: workouts },
           exercises: exercisesMap,
           progress: progressEntry ? { [user.id]: progressEntry } : {},
           agenda,
-          notifications,
+          notifications: updatedNotifications,
           mealPlan,
           chat,
         });
@@ -209,7 +274,26 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
           photos: [],
         };
       }
-      return { ...prev, progress: progressMap };
+
+      // Criar notificação de lembrete para próximo mês
+      const nextMonthDate = new Date(entry.date);
+      nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
+      
+      const monthlyReminder: NotificationItem = {
+        id: `weight-reminder-${Date.now()}`,
+        id_user: studentId,
+        type: 'alerta',
+        title: '📊 Hora de Registrar seu Peso!',
+        message: 'Já faz um mês desde seu último registro. Atualize seu progresso mensal para acompanhar sua evolução!',
+        date: nextMonthDate.toISOString(),
+        read: false,
+      };
+
+      return { 
+        ...prev, 
+        progress: progressMap,
+        notifications: [...prev.notifications, monthlyReminder],
+      };
     });
   }, []);
 
@@ -253,6 +337,43 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
     }));
   }, []);
 
+  const addStudent = useCallback((student: { name: string; phone: string; goal: string }) => {
+    setState(prev => {
+      const studentId = `student-${Date.now()}`;
+      
+      // Gerar login e senha
+      const phoneDigits = student.phone.replace(/\D/g, '');
+      const lastFourDigits = phoneDigits.slice(-4);
+      const login = student.name.toLowerCase().replace(/\s+/g, '');
+      const tempPassword = `${login}${lastFourDigits}`;
+      
+      const newStudentProfile: StudentProfile = {
+        id_user: studentId,
+        id_personal: user?.id || '',
+        goal: student.goal,
+        upcomingWorkouts: [],
+        status: 'ativo',
+      };
+
+      // Criar notificação para o personal com as credenciais
+      const credentialsNotification: NotificationItem = {
+        id: `credentials-${Date.now()}`,
+        id_user: user?.id || '',
+        type: 'alerta',
+        title: '✅ Novo Aluno Cadastrado!',
+        message: `${student.name} foi adicionado com sucesso!\n\nCredenciais de acesso:\nTelefone: ${student.phone}\nLogin: ${login}\nSenha: ${tempPassword}\n\nCompartilhe essas informações com o aluno.`,
+        date: new Date().toISOString(),
+        read: false,
+      };
+
+      return {
+        ...prev,
+        students: [...prev.students, newStudentProfile],
+        notifications: [credentialsNotification, ...prev.notifications],
+      };
+    });
+  }, [user]);
+
   const value = useMemo<AppDataContextValue>(
     () => ({
       ...state,
@@ -265,8 +386,9 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
       addFeedNotification,
       setExercises,
       addNotification,
+      addStudent,
     }),
-    [state, loading, refresh, markWorkoutCompleted, toggleNotification, sendMessage, logProgress, addFeedNotification, setExercises, addNotification],
+    [state, loading, refresh, markWorkoutCompleted, toggleNotification, sendMessage, logProgress, addFeedNotification, setExercises, addNotification, addStudent],
   );
 
   return <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>;

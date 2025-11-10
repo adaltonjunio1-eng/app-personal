@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { useAppData } from '../../hooks/useAppData';
 import { Card } from '../../components/common/Card';
@@ -8,7 +9,9 @@ import './ProgressPage.css';
 
 export function ProgressPage() {
   const { user } = useAuth();
-  const { progress } = useAppData();
+  const { progress, logProgress } = useAppData();
+  const [showModal, setShowModal] = useState(false);
+  const [newWeight, setNewWeight] = useState('');
 
   // Pega o progresso do usuário atual
   const userProgress = user ? progress[user.id] : null;
@@ -28,13 +31,40 @@ export function ProgressPage() {
   const firstWeight = userProgress.weight[0];
   const weightDiff = latestWeight.value - firstWeight.value;
 
+  const handleRegister = () => {
+    setShowModal(true);
+  };
+
+  const handleSave = () => {
+    if (!newWeight || !user) return;
+    
+    const weight = parseFloat(newWeight);
+    if (isNaN(weight)) {
+      alert('Digite um peso válido');
+      return;
+    }
+
+    logProgress(user.id, {
+      date: new Date().toISOString(),
+      value: weight
+    });
+
+    setShowModal(false);
+    setNewWeight('');
+  };
+
+  const handleCancel = () => {
+    setShowModal(false);
+    setNewWeight('');
+  };
+
   return (
     <div className="progress-page">
       <SectionTitle 
         title="Progresso" 
         subtitle="Acompanhe sua evolução"
         action={
-          <Button variant="primary" icon={<Plus size={18} />}>
+          <Button variant="primary" icon={<Plus size={18} />} onClick={handleRegister}>
             Registrar
           </Button>
         }
@@ -123,6 +153,38 @@ export function ProgressPage() {
           ))}
         </div>
       </div>
+
+      {/* Modal de Registrar Peso */}
+      {showModal && (
+        <div className="modal-overlay" onClick={handleCancel}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h2>Registrar Peso</h2>
+            
+            <div className="form-group">
+              <label>Peso Atual (kg)</label>
+              <input
+                type="number"
+                step="0.1"
+                placeholder="Ex: 75.5"
+                value={newWeight}
+                onChange={(e) => setNewWeight(e.target.value)}
+                className="form-control"
+                autoFocus
+              />
+            </div>
+
+            <div className="modal-actions">
+              <button className="btn-cancel" onClick={handleCancel}>
+                Cancelar
+              </button>
+              <button className="btn-save" onClick={handleSave}>
+                <Plus size={16} />
+                Salvar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

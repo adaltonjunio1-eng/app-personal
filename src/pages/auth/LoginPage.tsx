@@ -41,8 +41,7 @@ export function LoginPage() {
         
         <div className="login-container">
           <div className="login-logo">
-            <div className="logo-icon">4</div>
-            <div className="logo-text">personal</div>
+            <img src="/images/logo.png" alt="Logo" className="logo-image" />
           </div>
 
           <div className="login-buttons">
@@ -59,13 +58,6 @@ export function LoginPage() {
               PERSONAL TRAINER
             </button>
           </div>
-
-          <button 
-            className="register-link"
-            onClick={() => navigate('/cadastro')}
-          >
-            PERSONAL TRAINER? CADASTRE-SE AQUI
-          </button>
         </div>
       </div>
     );
@@ -84,8 +76,7 @@ export function LoginPage() {
         </button>
 
         <div className="login-logo">
-          <div className="logo-icon">4</div>
-          <div className="logo-text">personal</div>
+          <img src="/images/logo.png" alt="Logo" className="logo-image" />
         </div>
 
         <h2 className="login-title">
