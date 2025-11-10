@@ -21,3 +21,12 @@ export function formatDateTime(value: string): string {
 export function formatWeight(value: number): string {
   return `${value.toFixed(1).replace('.', ',')} kg`;
 }
+
+// Normaliza texto para login: remove acentos, espaços extras e transforma em minúsculas.
+export function normalizeLoginText(value: string): string {
+  return value
+    .normalize('NFD') // separa acentos
+    .replace(/\p{Diacritic}/gu, '') // remove marcas diacríticas
+    .toLowerCase()
+    .replace(/\s+/g, '');
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { normalizeLoginText } from '../../utils/format';
 import { useNavigate } from 'react-router-dom';
 import { useAppData } from '../../hooks/useAppData';
 import { Card } from '../../components/common/Card';
@@ -46,9 +47,9 @@ export function StudentsListPage() {
     }
 
     // Gerar login e senha
-    const login = newStudent.name.toLowerCase().replace(/\s+/g, ''); // Nome sem espaços
+  const login = normalizeLoginText(newStudent.name); // Nome sem acentos e sem espaços
     const lastFourDigits = phoneDigits.slice(-4); // Últimos 4 dígitos do telefone
-    const password = `${newStudent.name.toLowerCase().replace(/\s+/g, '')}${lastFourDigits}`;
+  const password = `${login}${lastFourDigits}`;
 
     // Adicionar o aluno usando a função do contexto
     addStudent(newStudent);

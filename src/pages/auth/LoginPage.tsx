@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { normalizeLoginText } from '../../utils/format';
 import './LoginPage.css';
 
 export function LoginPage() {
@@ -24,7 +25,7 @@ export function LoginPage() {
         const name = nameOrPhone.trim();
         const phone = phoneInput.trim();
         
-        const username = name.toLowerCase().replace(/\s+/g, '');
+  const username = normalizeLoginText(name);
         const phoneDigits = phone.replace(/\D/g, '');
         const lastFourDigits = phoneDigits.slice(-4);
         
